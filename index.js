@@ -5,7 +5,6 @@ const mobile = require("./routes/mobile");
 const users = require("./routes/users");
 const config = require("./config/config");
 
-console.log(process.env);
 const app = express();
 const nodeEnv = process.env.NODE_ENV || "dev";
 console.log(`Running env -> ${nodeEnv}...`);
