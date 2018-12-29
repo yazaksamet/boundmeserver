@@ -3,6 +3,11 @@ const router = express.Router();
 const { User, validate } = require("../models/user");
 const mongoose = require("mongoose");
 
+router.get("/", async (req, res) => {
+  const users = await User.find({}).select("_id firstName lastName email displayName");
+  res.send(users);
+});
+
 router.get("/:email", async (req, res) => {
   const user = await User.findOne({ email: req.params.email });
   if (!user) return res.status(404).send("User not found.");
