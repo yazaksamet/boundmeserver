@@ -6,7 +6,12 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 router.get("/:userId", auth, async (req, res) => {
-  const userMobileInfo = await Mobile.find({ userId: req.params.userId });
+  const userMobileInfo = await Mobile.find({
+    userId: req.params.userId,
+    dateRecorded: {
+      $gt: new Date(new Date().setDate(new Date().getDate() - 1))
+    }
+  });
   res.send(userMobileInfo);
 });
 
