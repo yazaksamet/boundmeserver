@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const mobile = require("./routes/mobile");
 const users = require("./routes/users");
@@ -9,6 +10,7 @@ const app = express();
 const nodeEnv = process.env.NODE_ENV || "dev";
 console.log(`Running env -> ${nodeEnv}...`);
 
+app.use(cors());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("home");
@@ -25,7 +27,7 @@ mongoose
   )
   .then(() => console.log(`Connected mongodb on ${config.mongoURI}...`));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || config.appPort;
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
