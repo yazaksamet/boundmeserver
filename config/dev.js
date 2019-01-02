@@ -1,5 +1,5 @@
 const config = {
-  jwtToken: "fantasyPrivateKey",
+  jwtToken: "boundmePrivateKey",
   mongoURI: "mongodb://localhost/boundme",
   appPort: 3001
 };
